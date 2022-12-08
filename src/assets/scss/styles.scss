@@ -1,5 +1,24 @@
+@import-normalize;
+
 $green: #90EE90;
 
+$light-yellow: #f8be29;
+$dark-yellow: #d29b1c;
+$black: #292e36;
+$white: #fff;
+
 body{
+    margin: 0px;
     background-color: $green;
+}
+
+header{
+    padding: 20px;
+    background-color: $black;
+
+    h1{
+        margin: 0px;
+        color: $light-yellow;
+    }
+
 }

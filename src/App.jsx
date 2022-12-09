@@ -3,6 +3,8 @@
 import React, { Component } from "react";
 // import uniqid from "uniqid";
 
+import Header from "./components/Header";
+
 class App extends Component {
     constructor() {
         super();
@@ -13,7 +15,11 @@ class App extends Component {
     render() {
         // const { task, tasks } = this.state;
 
-        return <div>Hello world</div>;
+        return (
+            <div>
+                <Header />
+            </div>
+        );
     }
 }
 

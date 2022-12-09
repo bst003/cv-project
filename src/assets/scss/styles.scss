@@ -1,24 +1,37 @@
 @import-normalize;
 
-$green: #90EE90;
+:root {
+    /*COLORS*/
+    --green: #90EE90;
 
-$light-yellow: #f8be29;
-$dark-yellow: #d29b1c;
-$black: #292e36;
-$white: #fff;
+    --light-yellow: #f8be29;
+    --dark-yellow: #d29b1c;
+    --black: #292e36;
+    --white: #fff;
+
+}
+
 
 body{
     margin: 0px;
-    background-color: $green;
+    background-color: var(--green);
 }
 
-header{
-    padding: 20px;
-    background-color: $black;
+.btn{
+    padding: 5px 12px;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 600;
+    background-color: var(--dark-yellow);
+    border-radius: 5px;
+    border: initial;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
 
-    h1{
-        margin: 0px;
-        color: $light-yellow;
+    &:hover,
+    &:focus{
+        background-color: var(--light-yellow);
     }
 
 }
+

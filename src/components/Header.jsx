@@ -1,5 +1,7 @@
 // Header.jsx
 
+import "./Header.scss";
+
 import React, { Component } from "react";
 
 class Header extends Component {
@@ -13,7 +15,7 @@ class Header extends Component {
             <header>
                 <h1>CV Creator</h1>
 
-                <button type="button" onClick={Header.printPage}>
+                <button className="btn" type="button" onClick={Header.printPage}>
                     Print CV
                 </button>
             </header>

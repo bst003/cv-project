@@ -19,6 +19,15 @@ Data
 
     - Positions and education would need to be arrays in the state, to allow for multiple options
 
+    - 5 main sections split across two areas
+        1. Sidebar
+            - contact info (phone and email)
+            - skills
+        2. Main Content
+            - general info (name, position, bio)
+            - education
+            - work experience
+
 */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

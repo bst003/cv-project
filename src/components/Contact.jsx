@@ -13,6 +13,7 @@ How to edit?
 State
     Phone
     Email
+    LinkedIn
 
 */
 

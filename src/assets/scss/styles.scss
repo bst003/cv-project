@@ -8,13 +8,14 @@
     --dark-yellow: #d29b1c;
     --black: #292e36;
     --white: #fff;
+    --gray: rgb(220, 220, 220);
 
 }
 
 
 body{
     margin: 0px;
-    background-color: var(--green);
+    background-color: var(--gray);
 }
 
 .btn{

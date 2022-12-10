@@ -20,13 +20,17 @@ Data
     - Positions and education would need to be arrays in the state, to allow for multiple options
 
     - 5 main sections split across two areas
-        1. Sidebar
-            - contact info (phone and email)
-            - skills
-        2. Main Content
-            - general info (name, position, bio)
-            - education
-            - work experience
+        - Section List
+            1. Sidebar
+                - contact info (phone and email)
+                - skills
+            2. Main Content
+                - general info (name, position, bio)
+                - education
+                - work experience
+
+    - How far to bury state/props?
+        - handle by section?
 
 */
 

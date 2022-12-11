@@ -7,7 +7,7 @@ import React, { Component } from "react";
 /*
 
 How to edit?
-    separate edit box that appears on click?
+    ***Separate edit box that appears on click?***
     Click edit and fields change into inputs and edit turns into save?
 
 State
@@ -18,11 +18,18 @@ State
 */
 
 class Contact extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     // this.passDeleteTask = this.passDeleteTask.bind(this);
-    // }
+        this.state = {
+            fields: [
+                { value: "111-222-333", name: "Phone" },
+                { value: "placeholder@gmail.com", name: "Email" },
+                { value: "testportfolio.com", name: "Portfolio" },
+            ],
+        };
+        // this.passDeleteTask = this.passDeleteTask.bind(this);
+    }
 
     //   passDeleteTask(dataKey) {
     //     console.log(`reached overview with key: ${dataKey}`);
@@ -30,7 +37,20 @@ class Contact extends Component {
     //   }
 
     render() {
-        return <div>Contact Here</div>;
+        const { fields } = this.state;
+
+        const contactInfo = [];
+
+        fields.forEach((field) => {
+            contactInfo.push(
+                <div className="contact-type">
+                    {field.name}
+                    {field.value}
+                </div>
+            );
+        });
+
+        return <div>{contactInfo}</div>;
     }
 }
 

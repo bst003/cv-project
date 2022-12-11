@@ -23,6 +23,7 @@
         "no-undef": "off",
         "no-underscore-dangle": "off",
         "no-unused-vars": "off",
+        "arrow-body-style": ["error", "as-needed"],
         "operator-linebreak": "off",
         "import/named": "off",
         "comma-dangle": "off",

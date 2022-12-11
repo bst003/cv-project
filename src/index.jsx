@@ -32,6 +32,15 @@ Data
     - How far to bury state/props?
         - handle by section?
 
+Reusable Forms
+    - "Static" sections (contact and bio)
+        - on "editing" use EditForm (working title) component
+            - would need make sure Contact and Bio each have access to onInputChange
+            - woudld need to ensure EditForm has access to submit method to toggle
+              editing on Contact and Bio
+            - would need to make sure Contact and Bio have same data set up
+    - "Array" sections (skills, education and work experience)
+
 */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

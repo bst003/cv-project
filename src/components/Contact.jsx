@@ -26,7 +26,7 @@ class Contact extends Component {
             editing: false,
             fields: [
                 {
-                    value: "111-222-333",
+                    value: "111-222-3333",
                     name: "Phone",
                     inputType: "tel",
                     id: uniqid(),
@@ -159,9 +159,6 @@ class Contact extends Component {
         return (
             <div>
                 <h2>Contact</h2>
-                {/* <button onClick={!editing ? this.editContactInfo : null} type="button">
-                    Edit
-                </button> */}
                 {contactContents()}
             </div>
         );

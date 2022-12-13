@@ -4,6 +4,7 @@ import "./Contact.scss";
 
 import React, { Component } from "react";
 import uniqid from "uniqid";
+import EditForm from "./EditForm";
 
 /*
 
@@ -91,8 +92,8 @@ class Contact extends Component {
         });
     }
 
-    submitContactInfo(e) {
-        e.preventDefault();
+    submitContactInfo() {
+        console.log("test");
 
         this.setState({
             editing: false,
@@ -126,10 +127,11 @@ class Contact extends Component {
                 });
 
                 contactInfo = (
-                    <form onSubmit={editing ? this.submitContactInfo : null}>
-                        {inputs}
-                        <button type="submit">Save</button>
-                    </form>
+                    // <form onSubmit={editing ? this.submitContactInfo : null}>
+                    //     {inputs}
+                    //     <button type="submit">Save</button>
+                    // </form>
+                    <EditForm onSubmitForm={this.submitContactInfo} />
                 );
             } else {
                 const contactMethods = [];

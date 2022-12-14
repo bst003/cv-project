@@ -107,31 +107,12 @@ class Contact extends Component {
             let contactInfo;
 
             if (editing) {
-                const inputs = [];
-
-                fields.forEach((field) => {
-                    inputs.push(
-                        <div className="input-contain" key={field.id}>
-                            <label htmlFor={field.name.toLowerCase()}>{field.name}</label>
-                            <input
-                                type={field.inputType}
-                                name={field.name.toLowerCase()}
-                                id={field.name.toLowerCase()}
-                                value={field.value}
-                                data-key={field.id}
-                                data-full-name={field.name}
-                                onChange={editing ? this.onInputChange : null}
-                            />
-                        </div>
-                    );
-                });
-
                 contactInfo = (
-                    // <form onSubmit={editing ? this.submitContactInfo : null}>
-                    //     {inputs}
-                    //     <button type="submit">Save</button>
-                    // </form>
-                    <EditForm onSubmitForm={this.submitContactInfo} />
+                    <EditForm
+                        onSubmitForm={this.submitContactInfo}
+                        onInputChanged={this.onInputChange}
+                        formFields={fields}
+                    />
                 );
             } else {
                 const contactMethods = [];

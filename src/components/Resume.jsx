@@ -5,6 +5,7 @@ import "./Resume.scss";
 import React, { Component } from "react";
 
 import Contact from "./Contact";
+import CvHeader from "./CvHeader";
 
 class Resume extends Component {
     render() {
@@ -12,6 +13,7 @@ class Resume extends Component {
             <div className="resume-contain">
                 <div className="resume">
                     <Contact />
+                    <CvHeader />
                 </div>
             </div>
         );

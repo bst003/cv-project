@@ -6,6 +6,7 @@ import TestField from "./testField";
 /*
 
 Streamline variable/key names!!!!
+Remember to remove imput listener on save
 
 */
 

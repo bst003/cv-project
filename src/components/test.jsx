@@ -3,6 +3,12 @@ import uniqid from "uniqid";
 
 import TestField from "./testField";
 
+/*
+
+Streamline variable/key names!!!!
+
+*/
+
 class Test extends Component {
     constructor(props) {
         super(props);
@@ -11,31 +17,32 @@ class Test extends Component {
             editing: false,
             name: "Todd Smith",
             title: "Web Dev",
-            // contactMethods: [
-            //     {
-            //         value: "111-222-3333",
-            //         name: "Phone",
-            //         inputType: "tel",
-            //         id: uniqid(),
-            //     },
-            //     {
-            //         value: "placeholder@gmail.com",
-            //         name: "Email",
-            //         inputType: "email",
-            //         id: uniqid(),
-            //     },
-            //     {
-            //         value: "testportfolio.com",
-            //         name: "Portfolio",
-            //         inputType: "text",
-            //         id: uniqid(),
-            //     },
-            // ],
+            contactMethods: [
+                {
+                    value: "111-222-3333",
+                    name: "Phone",
+                    inputType: "tel",
+                    uniqId: uniqid(),
+                },
+                {
+                    value: "placeholder@gmail.com",
+                    name: "Email",
+                    inputType: "email",
+                    uniqId: uniqid(),
+                },
+                {
+                    value: "testportfolio.com",
+                    name: "Portfolio",
+                    inputType: "text",
+                    uniqId: uniqid(),
+                },
+            ],
             bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
         };
 
         this.editInfo = this.editInfo.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
+        this.onContactInputChange = this.onContactInputChange.bind(this);
         this.submitInfo = this.submitInfo.bind(this);
     }
 
@@ -46,6 +53,44 @@ class Test extends Component {
         this.setState({
             [key]: inputValue,
         });
+    }
+
+    onContactInputChange(e) {
+        const fieldData = {
+            value: e.currentTarget.value,
+            name: e.currentTarget.getAttribute("name"),
+            inputType: e.currentTarget.getAttribute("type"),
+            uniqId: e.currentTarget.getAttribute("data-uniqid"),
+        };
+
+        const { contactMethods } = this.state;
+
+        console.log(contactMethods);
+
+        console.log(`id: ${fieldData.id}`);
+
+        const findMatchingKey = (element) => {
+            console.log(element);
+            if (element.uniqId === fieldData.uniqId) {
+                return true;
+            }
+            return false;
+        };
+
+        const editFieldIndex = contactMethods.findIndex(findMatchingKey);
+
+        this.setState(
+            {
+                contactMethods: [
+                    ...contactMethods.slice(0, editFieldIndex),
+                    fieldData,
+                    ...contactMethods.slice(editFieldIndex + 1),
+                ],
+            },
+            () => {
+                console.log(contactMethods);
+            }
+        );
     }
 
     editInfo(e) {
@@ -73,8 +118,10 @@ class Test extends Component {
                     if (key !== "editing" && key !== "contactMethods") {
                         contentsArray.push(
                             <TestField
+                                key={uniqid()}
                                 onInputChanged={this.onInputChange}
                                 inputKey={key}
+                                inputName={key}
                                 inputValue={value}
                             />
                         );
@@ -85,20 +132,15 @@ class Test extends Component {
 
                         value.forEach((contactMethod) => {
                             contactFields.push(
-                                <div className="input-contain" key={contactMethod.id}>
-                                    <label htmlFor={contactMethod.name.toLowerCase()}>
-                                        {contactMethod.name}
-                                    </label>
-                                    <input
-                                        type={contactMethod.inputType}
-                                        name={contactMethod.name.toLowerCase()}
-                                        id={contactMethod.name.toLowerCase()}
-                                        value={contactMethod.value}
-                                        data-key={contactMethod.id}
-                                        data-full-name={contactMethod.name}
-                                        // onChange={editing ? this.passInputChange : null}
-                                    />
-                                </div>
+                                <TestField
+                                    key={contactMethod.uniqId}
+                                    onInputChanged={this.onContactInputChange}
+                                    inputKey={key}
+                                    inputName={contactMethod.name}
+                                    inputValue={contactMethod.value}
+                                    inputUniqId={contactMethod.uniqId}
+                                    inputType={contactMethod.inputType}
+                                />
                             );
                         });
 

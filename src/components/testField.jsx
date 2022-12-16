@@ -28,16 +28,17 @@ class TestField extends Component {
 
     render() {
         const { editing } = this.state;
-        const { inputKey, inputValue } = this.props;
+        const { inputKey, inputValue, inputType, inputName, inputUniqId } = this.props;
 
         return (
             <div className="input-contain">
-                <label htmlFor={inputKey}>{inputKey}</label>
+                <label htmlFor={inputKey}>{inputName}</label>
                 <input
-                    type="text"
-                    name={inputKey}
-                    id={inputKey}
+                    type={inputType}
+                    name={inputName}
+                    id={inputName}
                     value={inputValue}
+                    data-uniqid={inputUniqId}
                     onChange={editing ? this.passInputChange : null}
                 />
             </div>
@@ -45,10 +46,19 @@ class TestField extends Component {
     }
 }
 
+TestField.defaultProps = {
+    inputType: "text",
+    inputUniqId: null,
+};
+
 TestField.propTypes = {
     onInputChanged: PropTypes.func.isRequired,
     inputKey: PropTypes.string.isRequired,
     inputValue: PropTypes.string.isRequired,
+    inputType: PropTypes.string,
+    inputName: PropTypes.string.isRequired,
+    // eslint-disable-next-line react/require-default-props
+    inputUniqId: PropTypes.string,
 };
 
 export default TestField;

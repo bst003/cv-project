@@ -34,7 +34,8 @@ class TestField extends Component {
 
     render() {
         const { editing } = this.state;
-        const { inputKey, inputValue, inputType, inputName, inputUniqid } = this.props;
+        const { inputKey, inputValue, inputType, inputName, inputUniqid } =
+            this.props;
 
         return (
             <div className="input-contain">

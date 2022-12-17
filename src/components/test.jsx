@@ -22,19 +22,19 @@ class Test extends Component {
                     value: "111-222-3333",
                     name: "Phone",
                     inputType: "tel",
-                    uniqId: uniqid(),
+                    uniqid: uniqid(),
                 },
                 {
                     value: "placeholder@gmail.com",
                     name: "Email",
                     inputType: "email",
-                    uniqId: uniqid(),
+                    uniqid: uniqid(),
                 },
                 {
                     value: "testportfolio.com",
                     name: "Portfolio",
                     inputType: "text",
-                    uniqId: uniqid(),
+                    uniqid: uniqid(),
                 },
             ],
             bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
@@ -60,7 +60,7 @@ class Test extends Component {
             value: e.currentTarget.value,
             name: e.currentTarget.getAttribute("name"),
             inputType: e.currentTarget.getAttribute("type"),
-            uniqId: e.currentTarget.getAttribute("data-uniqid"),
+            uniqid: e.currentTarget.getAttribute("data-uniqid"),
         };
 
         const { contactMethods } = this.state;
@@ -71,7 +71,7 @@ class Test extends Component {
 
         const findMatchingKey = (element) => {
             console.log(element);
-            if (element.uniqId === fieldData.uniqId) {
+            if (element.uniqid === fieldData.uniqid) {
                 return true;
             }
             return false;
@@ -107,7 +107,7 @@ class Test extends Component {
     }
 
     render() {
-        const { editing } = this.state;
+        const { editing, name, title, contactMethods, bio } = this.state;
 
         const contents = () => {
             let contentsInfo;
@@ -133,12 +133,12 @@ class Test extends Component {
                         value.forEach((contactMethod) => {
                             contactFields.push(
                                 <TestField
-                                    key={contactMethod.uniqId}
+                                    key={contactMethod.uniqid}
                                     onInputChanged={this.onContactInputChange}
                                     inputKey={key}
                                     inputName={contactMethod.name}
                                     inputValue={contactMethod.value}
-                                    inputUniqId={contactMethod.uniqId}
+                                    inputUniqid={contactMethod.uniqid}
                                     inputType={contactMethod.inputType}
                                 />
                             );
@@ -155,33 +155,53 @@ class Test extends Component {
                     </form>
                 );
             } else {
-                Object.entries(this.state).forEach(([key, value]) => {
-                    if (key !== "editing" && key !== "contactMethods") {
-                        contentsArray.push(<div key={uniqid()}>{value}</div>);
-                    }
+                // Object.entries(this.state).forEach(([key, value]) => {
+                //     if (key !== "editing" && key !== "contactMethods") {
+                //         contentsArray.push(<div key={uniqid()}>{value}</div>);
+                //     }
 
-                    if (key === "contactMethods") {
-                        const contactFields = [];
+                //     if (key === "contactMethods") {
+                //         const contactFields = [];
 
-                        value.forEach((contactMethod) => {
-                            contactFields.push(
-                                <div className="contact-type" key={contactMethod.id}>
-                                    {contactMethod.name}
-                                    {contactMethod.value}
-                                </div>
-                            );
-                        });
+                //         value.forEach((contactMethod) => {
+                //             contactFields.push(
+                //                 <div className="contact-type" key={contactMethod.id}>
+                //                     {contactMethod.name}
+                //                     {contactMethod.value}
+                //                 </div>
+                //             );
+                //         });
 
-                        contentsArray.push(contactFields);
-                    }
+                //         contentsArray.push(contactFields);
+                //     }
+                // });
+
+                const contactFields = [];
+                // const test = " - ";
+
+                contactMethods.forEach((contactMethod) => {
+                    contactFields.push(
+                        <li className="contact-type" key={contactMethod.uniqid}>
+                            {contactMethod.value}
+                        </li>
+                    );
                 });
 
                 contentsInfo = (
                     <div>
-                        <button onClick={!editing ? this.editInfo : null} type="button">
+                        <button
+                            onClick={!editing ? this.editInfo : null}
+                            type="button"
+                        >
                             Edit
                         </button>
-                        {contentsArray}
+                        <div className="cv-header__info">
+                            <h2>{name}</h2>
+                            <p>{title}</p>
+                            <ul className="cv-header__cm">{contactFields}</ul>
+                            <div className="cv-header__bio">{bio}</div>
+                        </div>
+                        {/* {contentsArray} */}
                     </div>
                 );
             }
@@ -189,12 +209,7 @@ class Test extends Component {
             return contentsInfo;
         };
 
-        return (
-            <div>
-                <h2>test</h2>
-                {contents()}
-            </div>
-        );
+        return <div className="cv-header">{contents()}</div>;
     }
 }
 

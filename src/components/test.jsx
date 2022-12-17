@@ -15,8 +15,18 @@ class Test extends Component {
 
         this.state = {
             editing: false,
-            name: "Todd Smith",
-            title: "Web Dev",
+            name: [
+                {
+                    value: "Todd Smith",
+                    uniqid: uniqid(),
+                },
+            ],
+            title: [
+                {
+                    value: "Web Dev",
+                    uniqid: uniqid(),
+                },
+            ],
             contactMethods: [
                 {
                     value: "111-222-3333",
@@ -37,7 +47,12 @@ class Test extends Component {
                     uniqid: uniqid(),
                 },
             ],
-            bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+            bio: [
+                {
+                    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+                    uniqid: uniqid(),
+                },
+            ],
         };
 
         this.editInfo = this.editInfo.bind(this);
@@ -47,11 +62,19 @@ class Test extends Component {
     }
 
     onInputChange(e) {
-        const inputValue = e.currentTarget.value;
+        const fieldData = {
+            value: e.currentTarget.value,
+            uniqid: e.currentTarget.getAttribute("data-uniqid"),
+        };
+
         const key = e.currentTarget.getAttribute("name");
 
+        // const keyState = this.state[key];
+
+        // console.log(keyState);
+
         this.setState({
-            [key]: inputValue,
+            [key]: [fieldData],
         });
     }
 
@@ -118,11 +141,12 @@ class Test extends Component {
                     if (key !== "editing" && key !== "contactMethods") {
                         contentsArray.push(
                             <TestField
-                                key={uniqid()}
+                                key={value[0].uniqid}
                                 onInputChanged={this.onInputChange}
                                 inputKey={key}
                                 inputName={key}
-                                inputValue={value}
+                                inputUniqid={value[0].uniqid}
+                                inputValue={value[0].value}
                             />
                         );
                     }
@@ -196,10 +220,10 @@ class Test extends Component {
                             Edit
                         </button>
                         <div className="cv-header__info">
-                            <h2>{name}</h2>
-                            <p>{title}</p>
+                            <h2>{name[0].value}</h2>
+                            <p>{title[0].value}</p>
                             <ul className="cv-header__cm">{contactFields}</ul>
-                            <div className="cv-header__bio">{bio}</div>
+                            <div className="cv-header__bio">{bio[0].value}</div>
                         </div>
                         {/* {contentsArray} */}
                     </div>

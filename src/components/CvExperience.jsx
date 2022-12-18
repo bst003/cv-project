@@ -17,21 +17,38 @@ class CvExperience extends Component {
             editing: false,
             positions: [
                 {
-                    value: "111-222-3333",
-                    name: "Phone",
-                    inputType: "tel",
-                    uniqid: uniqid(),
-                },
-                {
-                    value: "placeholder@gmail.com",
-                    name: "Email",
-                    inputType: "email",
-                    uniqid: uniqid(),
-                },
-                {
-                    value: "testportfolio.com",
-                    name: "Portfolio",
-                    inputType: "text",
+                    values: [
+                        {
+                            value: "Test Company",
+                            name: "Company Name",
+                            inputType: "text",
+                            uniqid: uniqid(),
+                        },
+                        {
+                            value: "Full Stack Developer",
+                            name: "Position",
+                            inputType: "text",
+                            uniqid: uniqid(),
+                        },
+                        {
+                            value: "05/22/2017",
+                            name: "Start Date",
+                            inputType: "date",
+                            uniqid: uniqid(),
+                        },
+                        {
+                            value: "06/02/2020",
+                            name: "End Date",
+                            inputType: "date",
+                            uniqid: uniqid(),
+                        },
+                        {
+                            value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+                            name: "Description",
+                            inputType: "textarea",
+                            uniqid: uniqid(),
+                        },
+                    ],
                     uniqid: uniqid(),
                 },
             ],

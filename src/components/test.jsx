@@ -18,12 +18,14 @@ class Test extends Component {
             name: [
                 {
                     value: "Todd Smith",
+                    inputType: "text",
                     uniqid: uniqid(),
                 },
             ],
             title: [
                 {
                     value: "Web Dev",
+                    inputType: "text",
                     uniqid: uniqid(),
                 },
             ],
@@ -50,6 +52,7 @@ class Test extends Component {
             bio: [
                 {
                     value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+                    inputType: "textarea",
                     uniqid: uniqid(),
                 },
             ],
@@ -64,6 +67,7 @@ class Test extends Component {
     onInputChange(e) {
         const fieldData = {
             value: e.currentTarget.value,
+            inputType: e.currentTarget.getAttribute("type"),
             uniqid: e.currentTarget.getAttribute("data-uniqid"),
         };
 
@@ -147,6 +151,7 @@ class Test extends Component {
                                 inputName={key}
                                 inputUniqid={value[0].uniqid}
                                 inputValue={value[0].value}
+                                inputType={value[0].inputType}
                             />
                         );
                     }

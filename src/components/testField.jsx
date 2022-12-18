@@ -37,17 +37,50 @@ class TestField extends Component {
         const { inputKey, inputValue, inputType, inputName, inputUniqid } =
             this.props;
 
+        const returnInput = () => {
+            let input;
+
+            if (inputType === "textarea") {
+                input = (
+                    <textarea
+                        type={inputType}
+                        name={inputName}
+                        id={inputName}
+                        data-uniqid={inputUniqid}
+                        onChange={editing ? this.passInputChange : null}
+                        rows="4"
+                    >
+                        {inputValue}
+                    </textarea>
+                );
+            } else {
+                input = (
+                    <input
+                        type={inputType}
+                        name={inputName}
+                        id={inputName}
+                        value={inputValue}
+                        data-uniqid={inputUniqid}
+                        onChange={editing ? this.passInputChange : null}
+                    />
+                );
+            }
+
+            return input;
+        };
+
         return (
             <div className="input-contain">
                 <label htmlFor={inputKey}>{inputName}</label>
-                <input
+                {returnInput()}
+                {/* <input
                     type={inputType}
                     name={inputName}
                     id={inputName}
                     value={inputValue}
                     data-uniqid={inputUniqid}
                     onChange={editing ? this.passInputChange : null}
-                />
+                /> */}
             </div>
         );
     }

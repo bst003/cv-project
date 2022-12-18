@@ -1,21 +1,11 @@
-// Contact.jsx
-
-import "./Contact.scss";
-
 import React, { Component } from "react";
 import uniqid from "uniqid";
-import EditForm from "./EditForm";
+
+import FormField from "./FormField";
 
 /*
 
-How to edit?
-    ***Separate edit box that appears on click?***
-    Click edit and fields change into inputs and edit turns into save?
-
-State
-    Phone
-    Email
-    LinkedIn
+Streamline variable/key names!!!
 
 */
 
@@ -25,124 +15,208 @@ class CvHeader extends Component {
 
         this.state = {
             editing: false,
-            fields: [
+            name: [
                 {
-                    value: "Joe Smith",
-                    name: "Name",
+                    value: "Todd Smith",
                     inputType: "text",
-                    id: uniqid(),
+                    uniqid: uniqid(),
+                },
+            ],
+            title: [
+                {
+                    value: "Web Dev",
+                    inputType: "text",
+                    uniqid: uniqid(),
+                },
+            ],
+            contactMethods: [
+                {
+                    value: "111-222-3333",
+                    name: "Phone",
+                    inputType: "tel",
+                    uniqid: uniqid(),
                 },
                 {
-                    value: "Full Stack Developer",
-                    name: "Title",
-                    inputType: "text",
-                    id: uniqid(),
+                    value: "placeholder@gmail.com",
+                    name: "Email",
+                    inputType: "email",
+                    uniqid: uniqid(),
                 },
+                {
+                    value: "testportfolio.com",
+                    name: "Portfolio",
+                    inputType: "text",
+                    uniqid: uniqid(),
+                },
+            ],
+            bio: [
                 {
                     value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
-                    name: "Bio",
                     inputType: "textarea",
-                    id: uniqid(),
+                    uniqid: uniqid(),
                 },
             ],
         };
 
-        this.editContactInfo = this.editContactInfo.bind(this);
+        this.editInfo = this.editInfo.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
-        this.submitContactInfo = this.submitContactInfo.bind(this);
+        this.onContactInputChange = this.onContactInputChange.bind(this);
+        this.submitInfo = this.submitInfo.bind(this);
     }
 
     onInputChange(e) {
         const fieldData = {
             value: e.currentTarget.value,
-            name: e.currentTarget.getAttribute("data-full-name"),
             inputType: e.currentTarget.getAttribute("type"),
-            id: e.currentTarget.getAttribute("data-key"),
+            uniqid: e.currentTarget.getAttribute("data-uniqid"),
         };
 
-        const { fields } = this.state;
+        const key = e.currentTarget.getAttribute("name");
+
+        // const keyState = this.state[key];
+
+        // console.log(keyState);
+
+        this.setState({
+            [key]: [fieldData],
+        });
+    }
+
+    onContactInputChange(e) {
+        const fieldData = {
+            value: e.currentTarget.value,
+            name: e.currentTarget.getAttribute("name"),
+            inputType: e.currentTarget.getAttribute("type"),
+            uniqid: e.currentTarget.getAttribute("data-uniqid"),
+        };
+
+        const { contactMethods } = this.state;
+
+        console.log(contactMethods);
+
+        console.log(`id: ${fieldData.id}`);
 
         const findMatchingKey = (element) => {
             console.log(element);
-            if (element.id === fieldData.id) {
+            if (element.uniqid === fieldData.uniqid) {
                 return true;
             }
             return false;
         };
 
-        const editFieldIndex = fields.findIndex(findMatchingKey);
+        const editFieldIndex = contactMethods.findIndex(findMatchingKey);
 
         this.setState(
             {
-                fields: [
-                    ...fields.slice(0, editFieldIndex),
+                contactMethods: [
+                    ...contactMethods.slice(0, editFieldIndex),
                     fieldData,
-                    ...fields.slice(editFieldIndex + 1),
+                    ...contactMethods.slice(editFieldIndex + 1),
                 ],
             },
             () => {
-                console.log(fields);
+                console.log(contactMethods);
             }
         );
     }
 
-    editContactInfo(e) {
+    editInfo(e) {
         this.setState({
             editing: true,
         });
     }
 
-    submitContactInfo() {
+    submitInfo(e) {
+        e.preventDefault();
         this.setState({
             editing: false,
         });
     }
 
     render() {
-        const { editing, fields } = this.state;
+        const { editing, name, title, contactMethods, bio } = this.state;
 
-        const cvHeaderContents = () => {
-            let info;
+        const contents = () => {
+            let contentsInfo;
+            const contentsArray = [];
 
             if (editing) {
-                info = (
-                    <EditForm
-                        onSubmitForm={this.submitContactInfo}
-                        onInputChanged={this.onInputChange}
-                        formFields={fields}
-                    />
+                Object.entries(this.state).forEach(([key, value]) => {
+                    if (key !== "editing" && key !== "contactMethods") {
+                        contentsArray.push(
+                            <FormField
+                                key={value[0].uniqid}
+                                onInputChanged={this.onInputChange}
+                                inputKey={key}
+                                inputName={key}
+                                inputUniqid={value[0].uniqid}
+                                inputValue={value[0].value}
+                                inputType={value[0].inputType}
+                            />
+                        );
+                    }
+
+                    if (key === "contactMethods") {
+                        const contactFields = [];
+
+                        value.forEach((contactMethod) => {
+                            contactFields.push(
+                                <FormField
+                                    key={contactMethod.uniqid}
+                                    onInputChanged={this.onContactInputChange}
+                                    inputKey={key}
+                                    inputName={contactMethod.name}
+                                    inputValue={contactMethod.value}
+                                    inputUniqid={contactMethod.uniqid}
+                                    inputType={contactMethod.inputType}
+                                />
+                            );
+                        });
+
+                        contentsArray.push(contactFields);
+                    }
+                });
+
+                contentsInfo = (
+                    <form onSubmit={editing ? this.submitInfo : null}>
+                        {contentsArray}
+                        <button type="submit">Save</button>
+                    </form>
                 );
             } else {
-                const headerFields = [];
+                const contactFields = [];
 
-                fields.forEach((field) => {
-                    headerFields.push(
-                        <div className="contact-type" key={field.id}>
-                            {field.name}
-                            {field.value}
-                        </div>
+                contactMethods.forEach((contactMethod) => {
+                    contactFields.push(
+                        <li className="contact-type" key={contactMethod.uniqid}>
+                            {contactMethod.value}
+                        </li>
                     );
                 });
 
-                info = (
+                contentsInfo = (
                     <div>
-                        <button onClick={!editing ? this.editContactInfo : null} type="button">
+                        <button
+                            onClick={!editing ? this.editInfo : null}
+                            className="btn icon"
+                            type="button"
+                        >
                             Edit
                         </button>
-                        {headerFields}
+                        <div className="cvh__info direct-wrap">
+                            <h2>{name[0].value}</h2>
+                            <p className="cvh__title">{title[0].value}</p>
+                            <ul className="cvh__cm">{contactFields}</ul>
+                            <p className="cvh__bio">{bio[0].value}</p>
+                        </div>
                     </div>
                 );
             }
 
-            return info;
+            return contentsInfo;
         };
 
-        return (
-            <div>
-                <h2>Bio</h2>
-                {cvHeaderContents()}
-            </div>
-        );
+        return <div className="cvh cv-sec">{contents()}</div>;
     }
 }
 

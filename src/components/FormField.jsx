@@ -9,7 +9,7 @@ ON UNMOUNT BE SURE TO REMOVED EDITING STATE
 
 */
 
-class TestField extends Component {
+class FormField extends Component {
     constructor(props) {
         super(props);
 
@@ -86,12 +86,12 @@ class TestField extends Component {
     }
 }
 
-TestField.defaultProps = {
+FormField.defaultProps = {
     inputType: "text",
     inputUniqid: null,
 };
 
-TestField.propTypes = {
+FormField.propTypes = {
     onInputChanged: PropTypes.func.isRequired,
     inputKey: PropTypes.string.isRequired,
     inputValue: PropTypes.string.isRequired,
@@ -101,4 +101,4 @@ TestField.propTypes = {
     inputUniqid: PropTypes.string,
 };
 
-export default TestField;
+export default FormField;

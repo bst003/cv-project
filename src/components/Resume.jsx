@@ -4,14 +4,14 @@ import "./Resume.scss";
 
 import React, { Component } from "react";
 
-import Test from "./test";
+import CvHeader from "./CvHeader";
 
 class Resume extends Component {
     render() {
         return (
             <div className="resume-contain">
                 <div className="resume">
-                    <Test />
+                    <CvHeader />
                 </div>
             </div>
         );

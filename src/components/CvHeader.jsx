@@ -1,3 +1,5 @@
+import "./CvHeader.scss";
+
 import React, { Component } from "react";
 import uniqid from "uniqid";
 
@@ -17,14 +19,14 @@ class CvHeader extends Component {
             editing: false,
             name: [
                 {
-                    value: "Todd Smith",
+                    value: "Benjamin Smith",
                     inputType: "text",
                     uniqid: uniqid(),
                 },
             ],
             title: [
                 {
-                    value: "Web Dev",
+                    value: "Full Stack Web Developer",
                     inputType: "text",
                     uniqid: uniqid(),
                 },
@@ -204,7 +206,7 @@ class CvHeader extends Component {
                             Edit
                         </button>
                         <div className="cvh__info direct-wrap">
-                            <h2>{name[0].value}</h2>
+                            <h2 className="cvh__name">{name[0].value}</h2>
                             <p className="cvh__title">{title[0].value}</p>
                             <ul className="cvh__cm">{contactFields}</ul>
                             <p className="cvh__bio">{bio[0].value}</p>

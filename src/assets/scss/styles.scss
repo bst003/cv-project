@@ -10,12 +10,15 @@
     --white: #fff;
     --gray: rgb(220, 220, 220);
 
+    --primary-font: 'Poppins', sans-serif;
+
 }
 
 
 body{
     margin: 0px;
     background-color: var(--gray);
+    font-family: var(--primary-font);
 }
 
 .btn{
@@ -36,3 +39,14 @@ body{
 
 }
 
+.direct-wrap{
+
+    >*:first-child{
+        margin-top: 0px;
+    }
+
+    >*:last-child{
+        margin-bottom: 0px;
+    }
+
+}

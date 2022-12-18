@@ -220,17 +220,17 @@ class Test extends Component {
                     <div>
                         <button
                             onClick={!editing ? this.editInfo : null}
+                            className="btn icon"
                             type="button"
                         >
                             Edit
                         </button>
-                        <div className="cv-header__info">
+                        <div className="cvh__info direct-wrap">
                             <h2>{name[0].value}</h2>
-                            <p>{title[0].value}</p>
-                            <ul className="cv-header__cm">{contactFields}</ul>
-                            <div className="cv-header__bio">{bio[0].value}</div>
+                            <p className="cvh__title">{title[0].value}</p>
+                            <ul className="cvh__cm">{contactFields}</ul>
+                            <p className="cvh__bio">{bio[0].value}</p>
                         </div>
-                        {/* {contentsArray} */}
                     </div>
                 );
             }
@@ -238,7 +238,7 @@ class Test extends Component {
             return contentsInfo;
         };
 
-        return <div className="cv-header">{contents()}</div>;
+        return <div className="cvh cv-sec">{contents()}</div>;
     }
 }
 

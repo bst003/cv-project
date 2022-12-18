@@ -69,18 +69,15 @@ class FormField extends Component {
             return input;
         };
 
+        let inputContainClasses = "input-contain";
+        if (inputType === "textarea") {
+            inputContainClasses += " full-width";
+        }
+
         return (
-            <div className="input-contain">
+            <div className={inputContainClasses}>
                 <label htmlFor={inputKey}>{inputName}</label>
                 {returnInput()}
-                {/* <input
-                    type={inputType}
-                    name={inputName}
-                    id={inputName}
-                    value={inputValue}
-                    data-uniqid={inputUniqid}
-                    onChange={editing ? this.passInputChange : null}
-                /> */}
             </div>
         );
     }

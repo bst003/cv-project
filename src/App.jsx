@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // import uniqid from "uniqid";
 
 import Header from "./components/Header";
-import Resume from "./components/Resume";
+import Cv from "./components/Cv";
 
 class App extends Component {
     constructor() {
@@ -19,7 +19,7 @@ class App extends Component {
         return (
             <div>
                 <Header />
-                <Resume />
+                <Cv />
             </div>
         );
     }

@@ -1,16 +1,16 @@
 // Contact.jsx
 
-import "./Resume.scss";
+import "./Cv.scss";
 
 import React, { Component } from "react";
 
 import CvHeader from "./CvHeader";
 
-class Resume extends Component {
+class Cv extends Component {
     render() {
         return (
-            <div className="resume-contain">
-                <div className="resume">
+            <div className="cv-contain">
+                <div className="cv">
                     <CvHeader />
                 </div>
             </div>
@@ -18,4 +18,4 @@ class Resume extends Component {
     }
 }
 
-export default Resume;
+export default Cv;

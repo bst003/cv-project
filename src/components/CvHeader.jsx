@@ -180,9 +180,16 @@ class CvHeader extends Component {
                 });
 
                 contentsInfo = (
-                    <form onSubmit={editing ? this.submitInfo : null}>
+                    <form
+                        className="cv-form"
+                        onSubmit={editing ? this.submitInfo : null}
+                    >
                         {contentsArray}
-                        <button type="submit">Save</button>
+                        <footer className="cv-form__footer">
+                            <button className="btn" type="submit">
+                                Save
+                            </button>
+                        </footer>
                     </form>
                 );
             } else {

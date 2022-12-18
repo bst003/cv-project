@@ -19,6 +19,11 @@ body{
     margin: 0px;
     background-color: var(--gray);
     font-family: var(--primary-font);
+
+    *{
+        box-sizing: border-box!important;
+    }
+
 }
 
 .btn{

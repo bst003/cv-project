@@ -200,7 +200,7 @@ class CvHeader extends Component {
                     <div>
                         <button
                             onClick={!editing ? this.editInfo : null}
-                            className="btn icon"
+                            className="btn ctrl icon"
                             type="button"
                         >
                             Edit
@@ -209,7 +209,12 @@ class CvHeader extends Component {
                             <h2 className="cvh__name">{name[0].value}</h2>
                             <p className="cvh__title">{title[0].value}</p>
                             <ul className="cvh__cm">{contactFields}</ul>
-                            <p className="cvh__bio">{bio[0].value}</p>
+                            <div className="cvh__bio direct-wrap">
+                                <h3 className="cv-title">
+                                    <span>Professional Summary</span>
+                                </h3>
+                                <p className="cvh__bio">{bio[0].value}</p>
+                            </div>
                         </div>
                     </div>
                 );

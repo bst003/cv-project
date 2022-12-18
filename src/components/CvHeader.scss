@@ -3,12 +3,32 @@
     &__name{
         margin: 0px 0px 10px;
         text-align: center;
-        font-size: 34px;
+        font-size: 32px;
     }
 
     &__title{
-        font-size: 28px;
+        font-size: 26px;
         text-align: center;
+    }
+
+    &__cm{
+        margin: 30px 0px;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        // column-gap: 40px;
+        row-gap: 4px;
+
+        li{
+            position: relative;
+
+            &:not(:last-of-type)::after{
+                content: "/";
+                margin: 0px 16px;
+            }
+
+        }
+
     }
 
 }

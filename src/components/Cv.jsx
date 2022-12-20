@@ -5,7 +5,7 @@ import "./Cv.scss";
 import React, { Component } from "react";
 
 import CvHeader from "./CvHeader";
-import CvExperience from "./CvExperience";
+import CvExperiences from "./CvExperiences";
 
 class Cv extends Component {
     render() {
@@ -13,7 +13,7 @@ class Cv extends Component {
             <div className="cv-contain">
                 <div className="cv">
                     <CvHeader />
-                    <CvExperience />
+                    <CvExperiences />
                 </div>
             </div>
         );

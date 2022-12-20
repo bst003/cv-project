@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 
-import FormField from "./FormField";
+import Experience from "./Experience";
 
 /*
 
@@ -9,14 +9,14 @@ Streamline variable/key names!!!
 
 */
 
-class CvExperience extends Component {
+class CvExperiences extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            editing: false,
             positions: [
                 {
+                    editing: false,
                     values: [
                         {
                             value: "Test Company",
@@ -53,46 +53,33 @@ class CvExperience extends Component {
                 },
             ],
         };
-
-        this.editInfo = this.editInfo.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
-        this.submitInfo = this.submitInfo.bind(this);
-    }
-
-    onInputChange(e) {
-        console.log("input change");
-
-        this.setState({
-            editing: true,
-        });
-    }
-
-    editInfo(e) {
-        this.setState({
-            editing: true,
-        });
-    }
-
-    submitInfo(e) {
-        e.preventDefault();
-        this.setState({
-            editing: false,
-        });
     }
 
     render() {
-        const { editing, positions } = this.state;
+        const { positions } = this.state;
 
         const contents = () => {
-            let contentsInfo;
+            const posArr = [];
 
-            console.log(positions);
+            positions.forEach((position) => {
+                console.log(position);
+                posArr.push(
+                    <Experience
+                        key={position.uniqid}
+                        editing={position.editing}
+                        values={position.values}
+                    />
+                );
+            });
 
-            if (editing) {
-                console.log("editing");
-            } else {
-                console.log("not editing");
-            }
+            const contentsInfo = (
+                <div>
+                    {posArr}
+                    <button className="btn" type="button">
+                        + Add Experience
+                    </button>
+                </div>
+            );
 
             return contentsInfo;
         };
@@ -108,4 +95,4 @@ class CvExperience extends Component {
     }
 }
 
-export default CvExperience;
+export default CvExperiences;

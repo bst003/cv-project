@@ -49,9 +49,8 @@ class FormField extends Component {
                         data-uniqid={inputUniqid}
                         onChange={editing ? this.passInputChange : null}
                         rows="4"
-                    >
-                        {inputValue}
-                    </textarea>
+                        value={inputValue}
+                    />
                 );
             } else {
                 input = (

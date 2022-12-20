@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
 import uniqid from "uniqid";
 
 import FormField from "./FormField";

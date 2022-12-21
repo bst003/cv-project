@@ -15,27 +15,38 @@ class Experience extends Component {
     constructor(props) {
         super(props);
 
-        const { values } = this.props;
+        const { editing, companyName, position, startDate, endDate } =
+            this.props;
 
         this.state = {
-            editing: false,
-            values,
+            editing,
+            companyName,
+            position,
+            startDate,
+            endDate,
         };
     }
 
     render() {
-        const { editing, values } = this.state;
+        const { editing, companyName, position, startDate, endDate } =
+            this.state;
 
         const contents = () => {
             console.log(values);
             let posContents;
+
             if (editing) {
                 console.log("editing");
             } else {
-                console.log("not editing");
+                posContents = <h4>hello world</h4>;
             }
 
-            const contentsInfo = <div>Test</div>;
+            const contentsInfo = (
+                <div>
+                    Test
+                    {posContents}
+                </div>
+            );
 
             return contentsInfo;
         };
@@ -45,7 +56,11 @@ class Experience extends Component {
 }
 
 Experience.propTypes = {
-    values: PropTypes.array.isRequired,
+    editing: PropTypes.bool.isRequired,
+    companyName: PropTypes.array.isRequired,
+    position: PropTypes.array.isRequired,
+    startDate: PropTypes.array.isRequired,
+    endDate: PropTypes.array.isRequired,
 };
 
 export default Experience;

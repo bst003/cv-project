@@ -17,31 +17,39 @@ class CvExperiences extends Component {
             positions: [
                 {
                     editing: false,
-                    values: [
+                    companyName: [
                         {
                             value: "Test Company",
                             name: "Company Name",
                             inputType: "text",
                             uniqid: uniqid(),
                         },
+                    ],
+                    position: [
                         {
                             value: "Full Stack Developer",
                             name: "Position",
                             inputType: "text",
                             uniqid: uniqid(),
                         },
+                    ],
+                    startDate: [
                         {
                             value: "05/22/2017",
                             name: "Start Date",
                             inputType: "date",
                             uniqid: uniqid(),
                         },
+                    ],
+                    endDate: [
                         {
                             value: "06/02/2020",
-                            name: "End Date",
+                            name: "Start Date",
                             inputType: "date",
                             uniqid: uniqid(),
                         },
+                    ],
+                    description: [
                         {
                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
                             name: "Description",
@@ -114,7 +122,10 @@ class CvExperiences extends Component {
                     <Experience
                         key={position.uniqid}
                         editing={position.editing}
-                        values={position.values}
+                        companyName={position.companyName}
+                        position={position.position}
+                        startDate={position.startDate}
+                        endDate={position.endDate}
                     />
                 );
             });

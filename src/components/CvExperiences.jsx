@@ -122,13 +122,17 @@ class CvExperiences extends Component {
             const contentsInfo = (
                 <div>
                     {posArr}
-                    <button
-                        onClick={positions.length < 3 ? this.addPosition : null}
-                        className="btn"
-                        type="button"
-                    >
-                        + Add Experience
-                    </button>
+                    {positions.length < 3 && (
+                        <button
+                            onClick={
+                                positions.length < 3 ? this.addPosition : null
+                            }
+                            className="btn"
+                            type="button"
+                        >
+                            + Add Experience
+                        </button>
+                    )}
                 </div>
             );
 

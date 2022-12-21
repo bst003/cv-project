@@ -53,6 +53,53 @@ class CvExperiences extends Component {
                 },
             ],
         };
+
+        this.addPosition = this.addPosition.bind(this);
+    }
+
+    addPosition(e) {
+        const { positions } = this.state;
+
+        const newPosition = {
+            editing: true,
+            values: [
+                {
+                    value: "Test Company",
+                    name: "Company Name",
+                    inputType: "text",
+                    uniqid: uniqid(),
+                },
+                {
+                    value: "Full Stack Developer",
+                    name: "Position",
+                    inputType: "text",
+                    uniqid: uniqid(),
+                },
+                {
+                    value: "05/22/2017",
+                    name: "Start Date",
+                    inputType: "date",
+                    uniqid: uniqid(),
+                },
+                {
+                    value: "06/02/2020",
+                    name: "End Date",
+                    inputType: "date",
+                    uniqid: uniqid(),
+                },
+                {
+                    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+                    name: "Description",
+                    inputType: "textarea",
+                    uniqid: uniqid(),
+                },
+            ],
+            uniqid: uniqid(),
+        };
+
+        this.setState({
+            positions: [...positions, newPosition],
+        });
     }
 
     render() {
@@ -75,7 +122,11 @@ class CvExperiences extends Component {
             const contentsInfo = (
                 <div>
                     {posArr}
-                    <button className="btn" type="button">
+                    <button
+                        onClick={this.addPosition}
+                        className="btn"
+                        type="button"
+                    >
                         + Add Experience
                     </button>
                 </div>

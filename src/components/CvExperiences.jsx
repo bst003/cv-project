@@ -123,7 +123,7 @@ class CvExperiences extends Component {
                 <div>
                     {posArr}
                     <button
-                        onClick={this.addPosition}
+                        onClick={positions.length < 3 ? this.addPosition : null}
                         className="btn"
                         type="button"
                     >

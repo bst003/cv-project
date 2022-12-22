@@ -52,7 +52,7 @@ class Experience extends Component {
                         {" - "}
                         {endDate[0].value}
                     </p>
-                    {description[0].value}
+                    <p>{description[0].value}</p>
                 </div>
             );
 

@@ -126,6 +126,7 @@ class CvExperiences extends Component {
                         position={position.position}
                         startDate={position.startDate}
                         endDate={position.endDate}
+                        description={position.description}
                     />
                 );
             });

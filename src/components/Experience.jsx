@@ -15,8 +15,14 @@ class Experience extends Component {
     constructor(props) {
         super(props);
 
-        const { editing, companyName, position, startDate, endDate } =
-            this.props;
+        const {
+            editing,
+            companyName,
+            position,
+            startDate,
+            endDate,
+            description,
+        } = this.props;
 
         this.state = {
             editing,
@@ -24,15 +30,22 @@ class Experience extends Component {
             position,
             startDate,
             endDate,
+            description,
         };
     }
 
     render() {
-        const { editing, companyName, position, startDate, endDate } =
-            this.state;
+        const {
+            editing,
+            companyName,
+            position,
+            startDate,
+            endDate,
+            description,
+        } = this.state;
 
         const contents = () => {
-            console.log(values);
+            console.log(this.state);
             let posContents;
 
             if (editing) {
@@ -44,7 +57,11 @@ class Experience extends Component {
             const contentsInfo = (
                 <div>
                     Test
-                    {posContents}
+                    <h3>{companyName[0].value}</h3>
+                    {position[0].value}
+                    {startDate[0].value}
+                    {endDate[0].value}
+                    {description[0].value}
                 </div>
             );
 
@@ -61,6 +78,7 @@ Experience.propTypes = {
     position: PropTypes.array.isRequired,
     startDate: PropTypes.array.isRequired,
     endDate: PropTypes.array.isRequired,
+    description: PropTypes.array.isRequired,
 };
 
 export default Experience;

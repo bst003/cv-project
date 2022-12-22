@@ -15,14 +15,7 @@ class Experience extends Component {
     constructor(props) {
         super(props);
 
-        const {
-            editing,
-            companyName,
-            position,
-            startDate,
-            endDate,
-            description,
-        } = this.props;
+        const { editing, companyName, position, startDate, endDate, description } = this.props;
 
         this.state = {
             editing,
@@ -35,14 +28,7 @@ class Experience extends Component {
     }
 
     render() {
-        const {
-            editing,
-            companyName,
-            position,
-            startDate,
-            endDate,
-            description,
-        } = this.state;
+        const { editing, companyName, position, startDate, endDate, description } = this.state;
 
         const contents = () => {
             console.log(this.state);
@@ -56,11 +42,16 @@ class Experience extends Component {
 
             const contentsInfo = (
                 <div>
-                    Test
-                    <h3>{companyName[0].value}</h3>
-                    {position[0].value}
-                    {startDate[0].value}
-                    {endDate[0].value}
+                    <h3>
+                        {companyName[0].value}
+                        {" - "}
+                        <em>{position[0].value}</em>
+                    </h3>
+                    <p>
+                        {startDate[0].value}
+                        {" - "}
+                        {endDate[0].value}
+                    </p>
                     {description[0].value}
                 </div>
             );

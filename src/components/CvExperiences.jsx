@@ -17,44 +17,48 @@ class CvExperiences extends Component {
             positions: [
                 {
                     editing: false,
-                    companyName: [
+                    values: [
                         {
-                            value: "Test Company",
-                            name: "Company Name",
-                            inputType: "text",
-                            uniqid: uniqid(),
-                        },
-                    ],
-                    position: [
-                        {
-                            value: "Full Stack Developer",
-                            name: "Position",
-                            inputType: "text",
-                            uniqid: uniqid(),
-                        },
-                    ],
-                    startDate: [
-                        {
-                            value: "05/22/2017",
-                            name: "Start Date",
-                            inputType: "date",
-                            uniqid: uniqid(),
-                        },
-                    ],
-                    endDate: [
-                        {
-                            value: "06/02/2020",
-                            name: "Start Date",
-                            inputType: "date",
-                            uniqid: uniqid(),
-                        },
-                    ],
-                    description: [
-                        {
-                            value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
-                            name: "Description",
-                            inputType: "textarea",
-                            uniqid: uniqid(),
+                            companyName: [
+                                {
+                                    value: "Test Company",
+                                    name: "Company Name",
+                                    inputType: "text",
+                                    uniqid: uniqid(),
+                                },
+                            ],
+                            position: [
+                                {
+                                    value: "Full Stack Developer",
+                                    name: "Position",
+                                    inputType: "text",
+                                    uniqid: uniqid(),
+                                },
+                            ],
+                            startDate: [
+                                {
+                                    value: "05/22/2017",
+                                    name: "Start Date",
+                                    inputType: "date",
+                                    uniqid: uniqid(),
+                                },
+                            ],
+                            endDate: [
+                                {
+                                    value: "06/02/2020",
+                                    name: "Start Date",
+                                    inputType: "date",
+                                    uniqid: uniqid(),
+                                },
+                            ],
+                            description: [
+                                {
+                                    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+                                    name: "Description",
+                                    inputType: "textarea",
+                                    uniqid: uniqid(),
+                                },
+                            ],
                         },
                     ],
                     uniqid: uniqid(),
@@ -122,11 +126,13 @@ class CvExperiences extends Component {
                     <Experience
                         key={position.uniqid}
                         editing={position.editing}
-                        companyName={position.companyName}
-                        position={position.position}
-                        startDate={position.startDate}
-                        endDate={position.endDate}
-                        description={position.description}
+                        values={position.values}
+                        expId={position.uniqid}
+                        // companyName={position.companyName}
+                        // position={position.position}
+                        // startDate={position.startDate}
+                        // endDate={position.endDate}
+                        // description={position.description}
                     />
                 );
             });
@@ -136,9 +142,7 @@ class CvExperiences extends Component {
                     {posArr}
                     {positions.length < 3 && (
                         <button
-                            onClick={
-                                positions.length < 3 ? this.addPosition : null
-                            }
+                            onClick={positions.length < 3 ? this.addPosition : null}
                             className="btn"
                             type="button"
                         >

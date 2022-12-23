@@ -21,43 +21,53 @@ class Experience extends Component {
         this.state = {
             editing,
             values,
-            uniqid: expId,
+            expId,
         };
     }
 
     render() {
         // const { editing, companyName, position, startDate, endDate, description } = this.state;
-        const { editing, values } = this.state;
+        const { editing, values, expId } = this.state;
 
         const { companyName, position, startDate, endDate, description } = values[0];
 
-        console.log(companyName);
-
         const contents = () => {
-            console.log(this.state);
             let expContents;
+
+            console.log(typeof values[0]);
 
             if (editing) {
                 const fieldsArray = [];
 
-                // Object.entries(this.state).forEach(([key, value]) => {
-                //     if (key !== "editing" && key !== "contactMethods") {
-                //         contentsArray.push(
-                //             <FormField
-                //                 key={value[0].uniqid}
-                //                 onInputChanged={this.onInputChange}
-                //                 inputKey={key}
-                //                 inputName={key}
-                //                 inputUniqid={value[0].uniqid}
-                //                 inputValue={value[0].value}
-                //                 inputType={value[0].inputType}
-                //             />
-                //         );
-                //     }
-                // });
+                Object.entries(values[0]).forEach(([key, value]) => {
+                    const valueData = value[0];
+
+                    if (key === "startDate" || key === "endDate") {
+                        const date = new Date(valueData.value);
+
+                        const formattedDate = date.toISOString().split("T")[0];
+
+                        valueData.value = formattedDate;
+                    }
+
+                    fieldsArray.push(
+                        <FormField
+                            key={valueData.uniqid}
+                            // onInputChanged={this.onContactInputChange}
+                            inputKey={key}
+                            inputName={valueData.name}
+                            inputValue={valueData.value}
+                            inputUniqid={valueData.uniqid}
+                            inputType={valueData.inputType}
+                        />
+                    );
+                });
 
                 expContents = (
-                    <form>
+                    <form
+                        className="cv-form"
+                        data-form-id={expId}
+                    >
                         {fieldsArray}
                         test
                     </form>

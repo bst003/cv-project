@@ -76,34 +76,46 @@ class CvExperiences extends Component {
             editing: true,
             values: [
                 {
-                    value: "Test Company",
-                    name: "Company Name",
-                    inputType: "text",
-                    uniqid: uniqid(),
-                },
-                {
-                    value: "Full Stack Developer",
-                    name: "Position",
-                    inputType: "text",
-                    uniqid: uniqid(),
-                },
-                {
-                    value: "05/22/2017",
-                    name: "Start Date",
-                    inputType: "date",
-                    uniqid: uniqid(),
-                },
-                {
-                    value: "06/02/2020",
-                    name: "End Date",
-                    inputType: "date",
-                    uniqid: uniqid(),
-                },
-                {
-                    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
-                    name: "Description",
-                    inputType: "textarea",
-                    uniqid: uniqid(),
+                    companyName: [
+                        {
+                            value: "New Position",
+                            name: "Company Name",
+                            inputType: "text",
+                            uniqid: uniqid(),
+                        },
+                    ],
+                    position: [
+                        {
+                            value: "Position Title Here",
+                            name: "Position",
+                            inputType: "text",
+                            uniqid: uniqid(),
+                        },
+                    ],
+                    startDate: [
+                        {
+                            value: "01/01/2022",
+                            name: "Start Date",
+                            inputType: "date",
+                            uniqid: uniqid(),
+                        },
+                    ],
+                    endDate: [
+                        {
+                            value: "12/11/2022",
+                            name: "Start Date",
+                            inputType: "date",
+                            uniqid: uniqid(),
+                        },
+                    ],
+                    description: [
+                        {
+                            value: "Add your job description here",
+                            name: "Description",
+                            inputType: "textarea",
+                            uniqid: uniqid(),
+                        },
+                    ],
                 },
             ],
             uniqid: uniqid(),

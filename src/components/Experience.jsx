@@ -25,6 +25,7 @@ class Experience extends Component {
         };
 
         this.onInputChange = this.onInputChange.bind(this);
+        this.onSubmitInfo = this.onSubmitInfo.bind(this);
     }
 
     onInputChange(e) {
@@ -44,14 +45,16 @@ class Experience extends Component {
 
         console.log(valuesCopyObj);
 
-        // const valuesObj = values[0];
-
-        // const valuesStateInput = valuesObj[key];
-
-        // const valuesStateInputValue = valuesStateInput[0].value;
-
         this.setState({
             values: [...values.slice(0, 1), ...valuesCopyObj],
+        });
+    }
+
+    onSubmitInfo(e) {
+        e.preventDefault();
+
+        this.setState({
+            editing: false,
         });
     }
 
@@ -94,7 +97,11 @@ class Experience extends Component {
                 });
 
                 expContents = (
-                    <form className="cv-form" data-form-id={expId}>
+                    <form
+                        className="cv-form"
+                        data-form-id={expId}
+                        onSubmit={editing ? this.onSubmitInfo : null}
+                    >
                         {fieldsArray}
                         <footer className="cv-form__footer">
                             <button className="btn" type="submit">

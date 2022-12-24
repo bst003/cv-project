@@ -155,7 +155,7 @@ class CvExperiences extends Component {
                     {positions.length < 3 && (
                         <button
                             onClick={positions.length < 3 ? this.addPosition : null}
-                            className="btn"
+                            className="btn mar-top"
                             type="button"
                         >
                             + Add Experience

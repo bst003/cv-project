@@ -34,8 +34,7 @@ class FormField extends Component {
 
     render() {
         const { editing } = this.state;
-        const { inputKey, inputValue, inputType, inputName, inputUniqid } =
-            this.props;
+        const { inputKey, inputValue, inputType, inputName, inputAttr, inputUniqid } = this.props;
 
         const returnInput = () => {
             let input;
@@ -44,8 +43,8 @@ class FormField extends Component {
                 input = (
                     <textarea
                         type={inputType}
-                        name={inputName}
-                        id={inputName}
+                        name={inputAttr ? inputAttr : inputName}
+                        id={inputAttr ? inputAttr : inputName}
                         data-uniqid={inputUniqid}
                         onChange={editing ? this.passInputChange : null}
                         rows="4"
@@ -56,8 +55,8 @@ class FormField extends Component {
                 input = (
                     <input
                         type={inputType}
-                        name={inputName}
-                        id={inputName}
+                        name={inputAttr ? inputAttr : inputName}
+                        id={inputAttr ? inputAttr : inputName}
                         value={inputValue}
                         data-uniqid={inputUniqid}
                         onChange={editing ? this.passInputChange : null}
@@ -85,6 +84,7 @@ class FormField extends Component {
 FormField.defaultProps = {
     inputType: "text",
     inputUniqid: null,
+    inputAttr: null,
 };
 
 FormField.propTypes = {
@@ -93,6 +93,7 @@ FormField.propTypes = {
     inputValue: PropTypes.string.isRequired,
     inputType: PropTypes.string,
     inputName: PropTypes.string.isRequired,
+    inputAttr: PropTypes.string,
     // eslint-disable-next-line react/require-default-props
     inputUniqid: PropTypes.string,
 };

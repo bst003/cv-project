@@ -3,7 +3,5 @@
     "tabWidth": 4,
     "semi": true,
     "singleQuote": false,
-    "printWidth": 160,
-    "singleAttributePerLine": true,
-    "html.format.wrapAttributes": "auto"
+    "printWidth":100
 }

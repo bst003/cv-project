@@ -23,6 +23,14 @@ class Experience extends Component {
             values,
             expId,
         };
+
+        this.onInputChange = this.onInputChange.bind(this);
+    }
+
+    onInputChange(e) {
+        console.log("tedt");
+
+        this.setState({});
     }
 
     render() {
@@ -53,8 +61,9 @@ class Experience extends Component {
                     fieldsArray.push(
                         <FormField
                             key={valueData.uniqid}
-                            // onInputChanged={this.onContactInputChange}
+                            onInputChanged={this.onInputChange}
                             inputKey={key}
+                            inputAttr={key}
                             inputName={valueData.name}
                             inputValue={valueData.value}
                             inputUniqid={valueData.uniqid}
@@ -69,7 +78,14 @@ class Experience extends Component {
                         data-form-id={expId}
                     >
                         {fieldsArray}
-                        test
+                        <footer className="cv-form__footer">
+                            <button
+                                className="btn"
+                                type="submit"
+                            >
+                                Save
+                            </button>
+                        </footer>
                     </form>
                 );
             } else {

@@ -166,7 +166,7 @@ class CvHeader extends Component {
                                 <FormField
                                     key={contactMethod.uniqid}
                                     onInputChanged={this.onContactInputChange}
-                                    inputKey={key}
+                                    inputKey={contactMethod.name}
                                     inputName={contactMethod.name}
                                     inputValue={contactMethod.value}
                                     inputUniqid={contactMethod.uniqid}
@@ -180,10 +180,7 @@ class CvHeader extends Component {
                 });
 
                 contentsInfo = (
-                    <form
-                        className="cv-form"
-                        onSubmit={editing ? this.submitInfo : null}
-                    >
+                    <form className="cv-form" onSubmit={editing ? this.submitInfo : null}>
                         {contentsArray}
                         <footer className="cv-form__footer">
                             <button className="btn" type="submit">

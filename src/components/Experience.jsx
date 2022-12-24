@@ -62,7 +62,6 @@ class Experience extends Component {
                         <FormField
                             key={valueData.uniqid}
                             onInputChanged={this.onInputChange}
-                            inputKey={key}
                             inputAttr={key}
                             inputName={valueData.name}
                             inputValue={valueData.value}
@@ -73,16 +72,10 @@ class Experience extends Component {
                 });
 
                 expContents = (
-                    <form
-                        className="cv-form"
-                        data-form-id={expId}
-                    >
+                    <form className="cv-form" data-form-id={expId}>
                         {fieldsArray}
                         <footer className="cv-form__footer">
-                            <button
-                                className="btn"
-                                type="submit"
-                            >
+                            <button className="btn" type="submit">
                                 Save
                             </button>
                         </footer>

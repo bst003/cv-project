@@ -34,7 +34,7 @@ class FormField extends Component {
 
     render() {
         const { editing } = this.state;
-        const { inputKey, inputValue, inputType, inputName, inputAttr, inputUniqid } = this.props;
+        const { inputValue, inputType, inputName, inputAttr, inputUniqid } = this.props;
 
         const returnInput = () => {
             let input;
@@ -74,7 +74,7 @@ class FormField extends Component {
 
         return (
             <div className={inputContainClasses}>
-                <label htmlFor={inputKey}>{inputName}</label>
+                <label htmlFor={inputAttr}>{inputName}</label>
                 {returnInput()}
             </div>
         );
@@ -89,7 +89,6 @@ FormField.defaultProps = {
 
 FormField.propTypes = {
     onInputChanged: PropTypes.func.isRequired,
-    inputKey: PropTypes.string.isRequired,
     inputValue: PropTypes.string.isRequired,
     inputType: PropTypes.string,
     inputName: PropTypes.string.isRequired,

@@ -149,7 +149,6 @@ class CvHeader extends Component {
                             <FormField
                                 key={value[0].uniqid}
                                 onInputChanged={this.onInputChange}
-                                inputKey={key}
                                 inputName={key}
                                 inputUniqid={value[0].uniqid}
                                 inputValue={value[0].value}
@@ -166,7 +165,6 @@ class CvHeader extends Component {
                                 <FormField
                                     key={contactMethod.uniqid}
                                     onInputChanged={this.onContactInputChange}
-                                    inputKey={contactMethod.name}
                                     inputName={contactMethod.name}
                                     inputValue={contactMethod.value}
                                     inputUniqid={contactMethod.uniqid}

@@ -28,9 +28,31 @@ class Experience extends Component {
     }
 
     onInputChange(e) {
-        console.log("tedt");
+        const currentValue = e.currentTarget.value;
+        const key = e.currentTarget.getAttribute("name");
 
-        this.setState({});
+        const { values } = this.state;
+
+        console.log(values);
+        console.log(typeof values);
+
+        const valuesCopyObj = values.slice();
+
+        console.log(valuesCopyObj);
+
+        valuesCopyObj[0][key][0].value = currentValue;
+
+        console.log(valuesCopyObj);
+
+        // const valuesObj = values[0];
+
+        // const valuesStateInput = valuesObj[key];
+
+        // const valuesStateInputValue = valuesStateInput[0].value;
+
+        this.setState({
+            values: [...values.slice(0, 1), ...valuesCopyObj],
+        });
     }
 
     render() {

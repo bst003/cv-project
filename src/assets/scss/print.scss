@@ -1,0 +1,20 @@
+@media print {
+
+    body{
+        background-color: var(--white);
+    }
+
+    header{
+        display: none;
+    }
+
+    .cv-contain{
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .cv{
+        box-shadow: initial;
+    }
+
+}

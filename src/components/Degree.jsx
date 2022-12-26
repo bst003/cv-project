@@ -28,16 +28,9 @@ class Degree extends Component {
 
         const { values } = this.state;
 
-        console.log(values);
-        console.log(typeof values);
-
         const valuesCopyObj = values.slice();
 
-        console.log(valuesCopyObj);
-
         valuesCopyObj[0][key][0].value = currentValue;
-
-        console.log(valuesCopyObj);
 
         this.setState({
             values: [...values.slice(0, 1), ...valuesCopyObj],
@@ -99,11 +92,7 @@ class Degree extends Component {
                     if (valueData.inputType === "month") {
                         const date = new Date(valueData.value);
 
-                        console.log(date.toISOString());
-
                         const formattedDate = date.toISOString().split("-");
-
-                        console.log(`${formattedDate[0]}-${formattedDate[1]}`);
 
                         valueData.value = `${formattedDate[0]}-${formattedDate[1]}`;
                     }

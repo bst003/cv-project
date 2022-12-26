@@ -3,12 +3,6 @@ import uniqid from "uniqid";
 
 import Degree from "./Degree";
 
-/*
-
-Streamline variable/key names!!!
-
-*/
-
 class CvEducation extends Component {
     constructor(props) {
         super(props);
@@ -112,8 +106,6 @@ class CvEducation extends Component {
     }
 
     deleteDegree(id) {
-        console.log(id);
-
         const { degrees } = this.state;
 
         this.setState({
@@ -128,7 +120,6 @@ class CvEducation extends Component {
             const degArr = [];
 
             degrees.forEach((degree) => {
-                console.log(degree);
                 degArr.push(
                     <Degree
                         key={degree.uniqid}

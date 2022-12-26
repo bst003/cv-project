@@ -28,16 +28,9 @@ class Experience extends Component {
 
         const { values } = this.state;
 
-        console.log(values);
-        console.log(typeof values);
-
         const valuesCopyObj = values.slice();
 
-        console.log(valuesCopyObj);
-
         valuesCopyObj[0][key][0].value = currentValue;
-
-        console.log(valuesCopyObj);
 
         this.setState({
             values: [...values.slice(0, 1), ...valuesCopyObj],
@@ -81,8 +74,6 @@ class Experience extends Component {
 
         const contents = () => {
             let expContents;
-
-            console.log(typeof values[0]);
 
             if (editing) {
                 const fieldsArray = [];

@@ -3,12 +3,6 @@ import uniqid from "uniqid";
 
 import Experience from "./Experience";
 
-/*
-
-Streamline variable/key names!!!
-
-*/
-
 class CvExperiences extends Component {
     constructor(props) {
         super(props);
@@ -128,8 +122,6 @@ class CvExperiences extends Component {
     }
 
     deletePosition(id) {
-        console.log(id);
-
         const { positions } = this.state;
 
         this.setState({
@@ -144,7 +136,6 @@ class CvExperiences extends Component {
             const posArr = [];
 
             positions.forEach((position) => {
-                console.log(position);
                 posArr.push(
                     <Experience
                         key={position.uniqid}

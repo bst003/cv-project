@@ -21,13 +21,13 @@
     &:focus{
 
         .ctrl{
-            display: block;
+            display: block!important;
         }
 
     }
 
     .ctrl{
-        display: none;
+        display: none!important;
         position: absolute;
         top: 0;
         right: 0;
@@ -89,6 +89,28 @@
             font-family: var(--primary-font);
         }
 
+    }
+
+}
+
+.cv-repeat-item{
+    position: relative;
+
+    &:hover,
+    &:focus{
+
+        .btn-contain{
+            display: flex;
+        }
+
+    }
+
+    .btn-contain{
+        position: absolute;
+        top: 0;
+        right: 0;
+        gap: 10px;
+        display: none;
     }
 
 }

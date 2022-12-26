@@ -202,10 +202,10 @@ class CvHeader extends Component {
                     <div>
                         <button
                             onClick={!editing ? this.editInfo : null}
-                            className="btn ctrl icon"
+                            className="btn icon ctrl"
                             type="button"
                         >
-                            Edit
+                            <i className="fas fa-edit" />
                         </button>
                         <div className="cvh__info direct-wrap">
                             <h2 className="cvh__name">{name[0].value}</h2>

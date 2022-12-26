@@ -67,6 +67,7 @@ class CvExperiences extends Component {
         };
 
         this.addPosition = this.addPosition.bind(this);
+        this.deletePosition = this.deletePosition.bind(this);
     }
 
     addPosition(e) {
@@ -126,6 +127,16 @@ class CvExperiences extends Component {
         });
     }
 
+    deletePosition(id) {
+        console.log(id);
+
+        const { positions } = this.state;
+
+        this.setState({
+            positions: positions.filter((position) => position.uniqid !== id),
+        });
+    }
+
     render() {
         const { positions } = this.state;
 
@@ -140,6 +151,7 @@ class CvExperiences extends Component {
                         editing={position.editing}
                         values={position.values}
                         expId={position.uniqid}
+                        onDeleteExp={this.deletePosition}
                         // companyName={position.companyName}
                         // position={position.position}
                         // startDate={position.startDate}

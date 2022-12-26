@@ -46,6 +46,14 @@ body{
         margin: 10px 0px 0px;
     }
 
+    &.icon{
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
 
 .direct-wrap{

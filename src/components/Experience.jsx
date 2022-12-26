@@ -24,6 +24,8 @@ class Experience extends Component {
             expId,
         };
 
+        this.passDeleteId = this.passDeleteId.bind(this);
+        this.editExperience = this.editExperience.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmitInfo = this.onSubmitInfo.bind(this);
     }
@@ -56,6 +58,24 @@ class Experience extends Component {
         this.setState({
             editing: false,
         });
+    }
+
+    editExperience(e) {
+        e.preventDefault();
+
+        this.setState({
+            editing: true,
+        });
+    }
+
+    passDeleteId(e) {
+        e.preventDefault();
+
+        const { expId } = this.state;
+
+        const { onDeleteExp } = this.props;
+
+        onDeleteExp(expId);
     }
 
     render() {
@@ -124,6 +144,19 @@ class Experience extends Component {
                             {endDate[0].value}
                         </p>
                         <p>{description[0].value}</p>
+
+                        <div className="btn-contain">
+                            <button
+                                onClick={!editing ? this.editExperience : null}
+                                className="btn icon"
+                                type="button"
+                            >
+                                <i className="fas fa-edit" />
+                            </button>
+                            <button onClick={this.passDeleteId} className="btn icon" type="button">
+                                <i className="fas fa-trash" />
+                            </button>
+                        </div>
                     </div>
                 );
             }
@@ -131,7 +164,7 @@ class Experience extends Component {
             return expContents;
         };
 
-        return <div className="experience">{contents()}</div>;
+        return <div className="experience cv-repeat-item">{contents()}</div>;
     }
 }
 
@@ -139,6 +172,7 @@ Experience.propTypes = {
     editing: PropTypes.bool.isRequired,
     values: PropTypes.array.isRequired,
     expId: PropTypes.string.isRequired,
+    onDeleteExp: PropTypes.func.isRequired,
 };
 
 export default Experience;

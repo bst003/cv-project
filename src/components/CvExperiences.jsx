@@ -46,7 +46,7 @@ class CvExperiences extends Component {
                             endDate: [
                                 {
                                     value: "06/02/2020",
-                                    name: "Start Date",
+                                    name: "End Date",
                                     inputType: "date",
                                     uniqid: uniqid(),
                                 },
@@ -104,7 +104,7 @@ class CvExperiences extends Component {
                     endDate: [
                         {
                             value: "12/11/2022",
-                            name: "Start Date",
+                            name: "End Date",
                             inputType: "date",
                             uniqid: uniqid(),
                         },

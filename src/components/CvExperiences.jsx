@@ -152,11 +152,6 @@ class CvExperiences extends Component {
                         values={position.values}
                         expId={position.uniqid}
                         onDeleteExp={this.deletePosition}
-                        // companyName={position.companyName}
-                        // position={position.position}
-                        // startDate={position.startDate}
-                        // endDate={position.endDate}
-                        // description={position.description}
                     />
                 );
             });

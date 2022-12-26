@@ -22,6 +22,7 @@ class Experience extends Component {
             editing,
             values,
             expId,
+            deleted: false,
         };
 
         this.passDeleteId = this.passDeleteId.bind(this);
@@ -75,12 +76,16 @@ class Experience extends Component {
 
         const { onDeleteExp } = this.props;
 
+        this.setState({
+            deleted: true,
+        });
+
         onDeleteExp(expId);
     }
 
     render() {
         // const { editing, companyName, position, startDate, endDate, description } = this.state;
-        const { editing, values, expId } = this.state;
+        const { editing, values, expId, deleted } = this.state;
 
         const { companyName, position, startDate, endDate, description } = values[0];
 
@@ -153,7 +158,11 @@ class Experience extends Component {
                             >
                                 <i className="fas fa-edit" />
                             </button>
-                            <button onClick={this.passDeleteId} className="btn icon" type="button">
+                            <button
+                                onClick={!deleted ? this.passDeleteId : null}
+                                className="btn icon"
+                                type="button"
+                            >
                                 <i className="fas fa-trash" />
                             </button>
                         </div>

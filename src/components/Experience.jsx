@@ -1,21 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import uniqid from "uniqid";
-
 import FormField from "./FormField";
-
-/*
-
-Streamline variable/key names!!!
-
-*/
 
 class Experience extends Component {
     constructor(props) {
         super(props);
 
-        // const { editing, companyName, position, startDate, endDate, description } = this.props;
         const { editing, values, expId } = this.props;
 
         this.state = {
@@ -84,7 +75,6 @@ class Experience extends Component {
     }
 
     render() {
-        // const { editing, companyName, position, startDate, endDate, description } = this.state;
         const { editing, values, expId, deleted } = this.state;
 
         const { companyName, position, startDate, endDate, description } = values[0];

@@ -2,25 +2,23 @@
 
 import "./Header.scss";
 
-import React, { Component } from "react";
+import React from "react";
 
-class Header extends Component {
-    static printPage(e) {
+function Header() {
+    const printPage = (e) => {
         console.log("printing page");
         window.print();
-    }
+    };
 
-    render() {
-        return (
-            <header>
-                <h1>CV Creator</h1>
+    return (
+        <header>
+            <h1>CV Creator</h1>
 
-                <button className="btn" type="button" onClick={Header.printPage}>
-                    Print CV
-                </button>
-            </header>
-        );
-    }
+            <button className="btn" type="button" onClick={printPage}>
+                Print CV
+            </button>
+        </header>
+    );
 }
 
 export default Header;

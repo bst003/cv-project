@@ -4,7 +4,7 @@ import "./Header.scss";
 
 import React from "react";
 
-function Header() {
+const Header = () => {
     const printPage = (e) => {
         console.log("printing page");
         window.print();
@@ -19,6 +19,6 @@ function Header() {
             </button>
         </header>
     );
-}
+};
 
 export default Header;

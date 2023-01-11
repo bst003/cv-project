@@ -1,64 +1,53 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import uniqid from "uniqid";
 
 import Degree from "./Degree";
 
-class CvEducation extends Component {
-    constructor(props) {
-        super(props);
+const CvEducation = (props) => {
+    const baseDeg = {
+        editing: false,
+        values: [
+            {
+                schoolName: [
+                    {
+                        value: "Test University",
+                        name: "School Name",
+                        inputType: "text",
+                        uniqid: uniqid(),
+                    },
+                ],
+                degree: [
+                    {
+                        value: "Bachelors in English",
+                        name: "Degree",
+                        inputType: "text",
+                        uniqid: uniqid(),
+                    },
+                ],
+                startDate: [
+                    {
+                        value: "2013/08",
+                        name: "Start Date",
+                        inputType: "month",
+                        uniqid: uniqid(),
+                    },
+                ],
+                endDate: [
+                    {
+                        value: "2017/05",
+                        name: "End Date",
+                        inputType: "month",
+                        uniqid: uniqid(),
+                    },
+                ],
+            },
+        ],
+        uniqid: uniqid(),
+    };
 
-        this.state = {
-            degrees: [
-                {
-                    editing: false,
-                    values: [
-                        {
-                            schoolName: [
-                                {
-                                    value: "Test University",
-                                    name: "School Name",
-                                    inputType: "text",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            degree: [
-                                {
-                                    value: "Bachelors in English",
-                                    name: "Degree",
-                                    inputType: "text",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            startDate: [
-                                {
-                                    value: "2013/08",
-                                    name: "Start Date",
-                                    inputType: "month",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            endDate: [
-                                {
-                                    value: "2017/05",
-                                    name: "End Date",
-                                    inputType: "month",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                        },
-                    ],
-                    uniqid: uniqid(),
-                },
-            ],
-        };
+    const [degrees, setDegrees] = useState([baseDeg]);
 
-        this.addDegree = this.addDegree.bind(this);
-        this.deleteDegree = this.deleteDegree.bind(this);
-    }
-
-    addDegree(e) {
-        const { degrees } = this.state;
-
+    const addDegree = (e) => {
         const newDegree = {
             editing: true,
             values: [
@@ -100,64 +89,54 @@ class CvEducation extends Component {
             uniqid: uniqid(),
         };
 
-        this.setState({
-            degrees: [...degrees, newDegree],
-        });
-    }
+        setDegrees([...degrees, newDegree]);
+    };
 
-    deleteDegree(id) {
-        const { degrees } = this.state;
+    const deleteDegree = (id) => {
+        setDegrees(degrees.filter((degree) => degree.uniqid !== id));
+    };
 
-        this.setState({
-            degrees: degrees.filter((degree) => degree.uniqid !== id),
-        });
-    }
+    const contents = () => {
+        const degArr = [];
 
-    render() {
-        const { degrees } = this.state;
-
-        const contents = () => {
-            const degArr = [];
-
-            degrees.forEach((degree) => {
-                degArr.push(
-                    <Degree
-                        key={degree.uniqid}
-                        editingProp={degree.editing}
-                        valuesProp={degree.values}
-                        degIdProp={degree.uniqid}
-                        onDeleteDeg={this.deleteDegree}
-                    />
-                );
-            });
-
-            const contentsInfo = (
-                <div>
-                    {degArr}
-                    {degrees.length < 3 && (
-                        <button
-                            onClick={degrees.length < 3 ? this.addDegree : null}
-                            className="btn mar-top"
-                            type="button"
-                        >
-                            + Add Education
-                        </button>
-                    )}
-                </div>
+        degrees.forEach((degree) => {
+            degArr.push(
+                <Degree
+                    key={degree.uniqid}
+                    editingProp={degree.editing}
+                    valuesProp={degree.values}
+                    degIdProp={degree.uniqid}
+                    onDeleteDeg={deleteDegree}
+                />
             );
+        });
 
-            return contentsInfo;
-        };
-
-        return (
-            <div className="cve cv-sec">
-                <h3 className="cv-title">
-                    <span>Education</span>
-                </h3>
-                {contents()}
+        const contentsInfo = (
+            <div>
+                {degArr}
+                {degrees.length < 3 && (
+                    <button
+                        onClick={degrees.length < 3 ? addDegree : null}
+                        className="btn mar-top"
+                        type="button"
+                    >
+                        + Add Education
+                    </button>
+                )}
             </div>
         );
-    }
-}
+
+        return contentsInfo;
+    };
+
+    return (
+        <div className="cve cv-sec">
+            <h3 className="cv-title">
+                <span>Education</span>
+            </h3>
+            {contents()}
+        </div>
+    );
+};
 
 export default CvEducation;

@@ -139,9 +139,9 @@ class CvExperiences extends Component {
                 posArr.push(
                     <Experience
                         key={position.uniqid}
-                        editing={position.editing}
-                        values={position.values}
-                        expId={position.uniqid}
+                        editingProp={position.editing}
+                        valuesProp={position.values}
+                        expIdProp={position.uniqid}
                         onDeleteExp={this.deletePosition}
                     />
                 );

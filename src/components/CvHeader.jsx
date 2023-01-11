@@ -51,37 +51,33 @@ const CvHeader = (props) => {
 
     const onInputChange = (e) => {
         const fieldData = {
-            value: e.currentTarget.value,
-            inputType: e.currentTarget.getAttribute("type"),
-            uniqid: e.currentTarget.getAttribute("data-uniqid"),
+            value: e.target.value,
+            inputType: e.target.getAttribute("type"),
+            uniqid: e.target.getAttribute("data-uniqid"),
         };
 
-        const key = e.currentTarget.getAttribute("name");
+        const key = e.target.getAttribute("name");
 
         if (key === "name") {
-            setName(fieldData);
+            setName([fieldData]);
         }
 
         if (key === "title") {
-            setTitle(fieldData);
+            setTitle([fieldData]);
         }
 
         if (key === "bio") {
-            setBio(fieldData);
+            setBio([fieldData]);
         }
     };
 
     const onContactInputChange = (e) => {
         const fieldData = {
-            value: e.currentTarget.value,
-            name: e.currentTarget.getAttribute("name"),
-            inputType: e.currentTarget.getAttribute("type"),
-            uniqid: e.currentTarget.getAttribute("data-uniqid"),
+            value: e.target.value,
+            name: e.target.getAttribute("name"),
+            inputType: e.target.getAttribute("type"),
+            uniqid: e.target.getAttribute("data-uniqid"),
         };
-
-        console.log(contactMethods);
-
-        console.log(`id: ${fieldData.id}`);
 
         const findMatchingKey = (element) => {
             console.log(element);
@@ -93,23 +89,13 @@ const CvHeader = (props) => {
 
         const editFieldIndex = contactMethods.findIndex(findMatchingKey);
 
-        // this.setState(
-        //     {
-        //         contactMethods: [
-        //             ...contactMethods.slice(0, editFieldIndex),
-        //             fieldData,
-        //             ...contactMethods.slice(editFieldIndex + 1),
-        //         ],
-        //     },
-        //     () => {
-        //         console.log(contactMethods);
-        //     }
-        // );
-        setContactMethods(
+        console.log(editFieldIndex);
+
+        setContactMethods([
             ...contactMethods.slice(0, editFieldIndex),
             fieldData,
-            ...contactMethods.slice(editFieldIndex + 1)
-        );
+            ...contactMethods.slice(editFieldIndex + 1),
+        ]);
     };
 
     const editInfo = (e) => {

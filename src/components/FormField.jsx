@@ -1,77 +1,66 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-class FormField extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            editing: true,
+const FormField = (props) => {
+    const [editing, setEditing] = useState(true);
+    useEffect(() => {
+        setEditing(true);
+        return () => {
+            setEditing(false);
         };
+    });
 
-        this.passInputChange = this.passInputChange.bind(this);
-    }
-
-    componentWillUnmount() {
-        this.setState({
-            editing: false,
-        });
-    }
-
-    passInputChange(e) {
-        const { onInputChanged } = this.props;
+    const passInputChange = (e) => {
+        const { onInputChanged } = props;
 
         onInputChanged(e);
-    }
+    };
 
-    render() {
-        const { editing } = this.state;
-        const { inputValue, inputType, inputName, inputAttr, inputUniqid } = this.props;
+    const { inputValue, inputType, inputName, inputAttr, inputUniqid } = props;
 
-        const returnInput = () => {
-            let input;
+    const returnInput = () => {
+        let input;
 
-            if (inputType === "textarea") {
-                input = (
-                    <textarea
-                        type={inputType}
-                        name={inputAttr ? inputAttr : inputName}
-                        id={inputAttr ? inputAttr : inputName}
-                        data-uniqid={inputUniqid}
-                        onChange={editing ? this.passInputChange : null}
-                        rows="4"
-                        value={inputValue}
-                    />
-                );
-            } else {
-                input = (
-                    <input
-                        type={inputType}
-                        name={inputAttr ? inputAttr : inputName}
-                        id={inputAttr ? inputAttr : inputName}
-                        value={inputValue}
-                        data-uniqid={inputUniqid}
-                        onChange={editing ? this.passInputChange : null}
-                    />
-                );
-            }
-
-            return input;
-        };
-
-        let inputContainClasses = "input-contain";
         if (inputType === "textarea") {
-            inputContainClasses += " full-width";
+            input = (
+                <textarea
+                    type={inputType}
+                    name={inputAttr ? inputAttr : inputName}
+                    id={inputAttr ? inputAttr : inputName}
+                    data-uniqid={inputUniqid}
+                    onChange={editing ? passInputChange : null}
+                    rows="4"
+                    value={inputValue}
+                />
+            );
+        } else {
+            input = (
+                <input
+                    type={inputType}
+                    name={inputAttr ? inputAttr : inputName}
+                    id={inputAttr ? inputAttr : inputName}
+                    value={inputValue}
+                    data-uniqid={inputUniqid}
+                    onChange={editing ? passInputChange : null}
+                />
+            );
         }
 
-        return (
-            <div className={inputContainClasses}>
-                <label htmlFor={inputAttr}>{inputName}</label>
-                {returnInput()}
-            </div>
-        );
+        return input;
+    };
+
+    let inputContainClasses = "input-contain";
+    if (inputType === "textarea") {
+        inputContainClasses += " full-width";
     }
-}
+
+    return (
+        <div className={inputContainClasses}>
+            <label htmlFor={inputAttr}>{inputName}</label>
+            {returnInput()}
+        </div>
+    );
+};
 
 FormField.defaultProps = {
     inputType: "text",

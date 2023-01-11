@@ -1,72 +1,61 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import uniqid from "uniqid";
 
 import Experience from "./Experience";
 
-class CvExperiences extends Component {
-    constructor(props) {
-        super(props);
+const CvExperiences = (props) => {
+    const basePos = {
+        editing: false,
+        values: [
+            {
+                companyName: [
+                    {
+                        value: "Test Company",
+                        name: "Company Name",
+                        inputType: "text",
+                        uniqid: uniqid(),
+                    },
+                ],
+                position: [
+                    {
+                        value: "Full Stack Developer",
+                        name: "Position",
+                        inputType: "text",
+                        uniqid: uniqid(),
+                    },
+                ],
+                startDate: [
+                    {
+                        value: "05/22/2017",
+                        name: "Start Date",
+                        inputType: "date",
+                        uniqid: uniqid(),
+                    },
+                ],
+                endDate: [
+                    {
+                        value: "06/02/2020",
+                        name: "End Date",
+                        inputType: "date",
+                        uniqid: uniqid(),
+                    },
+                ],
+                description: [
+                    {
+                        value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
+                        name: "Description",
+                        inputType: "textarea",
+                        uniqid: uniqid(),
+                    },
+                ],
+            },
+        ],
+        uniqid: uniqid(),
+    };
 
-        this.state = {
-            positions: [
-                {
-                    editing: false,
-                    values: [
-                        {
-                            companyName: [
-                                {
-                                    value: "Test Company",
-                                    name: "Company Name",
-                                    inputType: "text",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            position: [
-                                {
-                                    value: "Full Stack Developer",
-                                    name: "Position",
-                                    inputType: "text",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            startDate: [
-                                {
-                                    value: "05/22/2017",
-                                    name: "Start Date",
-                                    inputType: "date",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            endDate: [
-                                {
-                                    value: "06/02/2020",
-                                    name: "End Date",
-                                    inputType: "date",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                            description: [
-                                {
-                                    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus est sed hendrerit rhoncus. Nam sit amet lectus a ipsum euismod viverra non eu tortor. In hac habitasse platea dictumst.",
-                                    name: "Description",
-                                    inputType: "textarea",
-                                    uniqid: uniqid(),
-                                },
-                            ],
-                        },
-                    ],
-                    uniqid: uniqid(),
-                },
-            ],
-        };
+    const [positions, setPositions] = useState([basePos]);
 
-        this.addPosition = this.addPosition.bind(this);
-        this.deletePosition = this.deletePosition.bind(this);
-    }
-
-    addPosition(e) {
-        const { positions } = this.state;
-
+    const addPosition = (e) => {
         const newPosition = {
             editing: true,
             values: [
@@ -116,64 +105,54 @@ class CvExperiences extends Component {
             uniqid: uniqid(),
         };
 
-        this.setState({
-            positions: [...positions, newPosition],
-        });
-    }
+        setPositions([...positions, newPosition]);
+    };
 
-    deletePosition(id) {
-        const { positions } = this.state;
+    const deletePosition = (id) => {
+        setPositions(positions.filter((position) => position.uniqid !== id));
+    };
 
-        this.setState({
-            positions: positions.filter((position) => position.uniqid !== id),
-        });
-    }
+    const contents = () => {
+        const posArr = [];
 
-    render() {
-        const { positions } = this.state;
-
-        const contents = () => {
-            const posArr = [];
-
-            positions.forEach((position) => {
-                posArr.push(
-                    <Experience
-                        key={position.uniqid}
-                        editingProp={position.editing}
-                        valuesProp={position.values}
-                        expIdProp={position.uniqid}
-                        onDeleteExp={this.deletePosition}
-                    />
-                );
-            });
-
-            const contentsInfo = (
-                <div>
-                    {posArr}
-                    {positions.length < 3 && (
-                        <button
-                            onClick={positions.length < 3 ? this.addPosition : null}
-                            className="btn mar-top"
-                            type="button"
-                        >
-                            + Add Experience
-                        </button>
-                    )}
-                </div>
+        positions.forEach((position) => {
+            posArr.push(
+                <Experience
+                    key={position.uniqid}
+                    editingProp={position.editing}
+                    valuesProp={position.values}
+                    expIdProp={position.uniqid}
+                    onDeleteExp={deletePosition}
+                />
             );
+        });
 
-            return contentsInfo;
-        };
-
-        return (
-            <div className="cve cv-sec">
-                <h3 className="cv-title">
-                    <span>Work Experience</span>
-                </h3>
-                {contents()}
+        const contentsInfo = (
+            <div>
+                {posArr}
+                {positions.length < 3 && (
+                    <button
+                        onClick={positions.length < 3 ? addPosition : null}
+                        className="btn mar-top"
+                        type="button"
+                    >
+                        + Add Experience
+                    </button>
+                )}
             </div>
         );
-    }
-}
+
+        return contentsInfo;
+    };
+
+    return (
+        <div className="cve cv-sec">
+            <h3 className="cv-title">
+                <span>Work Experience</span>
+            </h3>
+            {contents()}
+        </div>
+    );
+};
 
 export default CvExperiences;

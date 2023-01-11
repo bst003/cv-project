@@ -58,13 +58,17 @@ const CvHeader = (props) => {
 
         const key = e.currentTarget.getAttribute("name");
 
-        // const keyState = this.state[key];
+        if (key === "name") {
+            setName(fieldData);
+        }
 
-        // console.log(keyState);
+        if (key === "title") {
+            setTitle(fieldData);
+        }
 
-        this.setState({
-            [key]: [fieldData],
-        });
+        if (key === "bio") {
+            setBio(fieldData);
+        }
     };
 
     const onContactInputChange = (e) => {
@@ -89,17 +93,22 @@ const CvHeader = (props) => {
 
         const editFieldIndex = contactMethods.findIndex(findMatchingKey);
 
-        this.setState(
-            {
-                contactMethods: [
-                    ...contactMethods.slice(0, editFieldIndex),
-                    fieldData,
-                    ...contactMethods.slice(editFieldIndex + 1),
-                ],
-            },
-            () => {
-                console.log(contactMethods);
-            }
+        // this.setState(
+        //     {
+        //         contactMethods: [
+        //             ...contactMethods.slice(0, editFieldIndex),
+        //             fieldData,
+        //             ...contactMethods.slice(editFieldIndex + 1),
+        //         ],
+        //     },
+        //     () => {
+        //         console.log(contactMethods);
+        //     }
+        // );
+        setContactMethods(
+            ...contactMethods.slice(0, editFieldIndex),
+            fieldData,
+            ...contactMethods.slice(editFieldIndex + 1)
         );
     };
 
@@ -119,34 +128,6 @@ const CvHeader = (props) => {
         const stateObj = { name, title, contactMethods, bio };
 
         if (editing) {
-            // Object.entries(stateObj).forEach(([key, value]) => {
-            //     console.log(`${key}: ${value}`);
-            //     contentsArray.push(
-            //         <FormField
-            //             key={value[0].uniqid}
-            //             onInputChanged={onInputChange}
-            //             inputName={key}
-            //             inputUniqid={value[0].uniqid}
-            //             inputValue={value[0].value}
-            //             inputType={value[0].inputType}
-            //         />
-            //     );
-            // });
-            // for (let i = 0; i < stateArray.length; i++) {
-            //     console.log(stateArray[i]);
-
-            //     contentsArray.push(
-            //         <FormField
-            //             key={stateArray[0].uniqid}
-            //             onInputChanged={onInputChange}
-            //             inputName={key}
-            //             inputUniqid={value[0].uniqid}
-            //             inputValue={value[0].value}
-            //             inputType={value[0].inputType}
-            //         />
-            //     );
-            // }
-
             Object.entries(stateObj).forEach(([key, value]) => {
                 if (key !== "contactMethods") {
                     contentsArray.push(
@@ -164,7 +145,11 @@ const CvHeader = (props) => {
                 if (key === "contactMethods") {
                     const contactFields = [];
 
+                    console.log(value);
+
                     value.forEach((contactMethod) => {
+                        console.log(contactMethod);
+
                         contactFields.push(
                             <FormField
                                 key={contactMethod.uniqid}

@@ -123,9 +123,9 @@ class CvEducation extends Component {
                 degArr.push(
                     <Degree
                         key={degree.uniqid}
-                        editing={degree.editing}
-                        values={degree.values}
-                        degId={degree.uniqid}
+                        editingProp={degree.editing}
+                        valuesProp={degree.values}
+                        degIdProp={degree.uniqid}
                         onDeleteDeg={this.deleteDegree}
                     />
                 );
